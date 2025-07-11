@@ -21,8 +21,7 @@
    (Alternatively, you can run uvicorn directly:)
 
    ```sh
-   uv sync
-   uv run uvicorn backend.main:app --reload
+   uv run -m uvicorn backend.main:app --reload
    ```
 
 2. (Optional) Activate the environment if you want to run Python commands directly:
