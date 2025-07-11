@@ -6,15 +6,15 @@ if TYPE_CHECKING:
     from backend.models import Galaxy, StarSystem
 
 
-class Planet(SQLModel, table=True):
-    __tablename__ = "planet"  # type: ignore
+class CelestialBody(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     name: str
     position_x: float
     position_y: float
     position_z: float
+    type: str  # 'planet' or 'star'
     star_system_id: int | None = Field(default=None, foreign_key="starsystem.id")
-    star_system: "StarSystem" = Relationship(back_populates="planets")
+    star_system: "StarSystem" = Relationship(back_populates="bodies")
 
 
 class StarSystem(SQLModel, table=True):
@@ -25,7 +25,7 @@ class StarSystem(SQLModel, table=True):
     position_y: float
     position_z: float
     galaxy_id: int | None = Field(default=None, foreign_key="galaxy.id")
-    planets: list[Planet] = Relationship(back_populates="star_system")
+    bodies: list[CelestialBody] = Relationship(back_populates="star_system")
     galaxy: "Galaxy" = Relationship(back_populates="star_systems")
 
 

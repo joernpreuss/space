@@ -2,7 +2,7 @@ from typing import Sequence
 
 from sqlmodel import Session, select
 
-from backend.models import Galaxy, Planet, StarSystem
+from backend.models import CelestialBody, Galaxy, StarSystem
 
 ALL_PLANETS: list[tuple[str, float]] = [
     ("Mercury", 0.39),
@@ -13,6 +13,10 @@ ALL_PLANETS: list[tuple[str, float]] = [
     ("Saturn", 9.58),
     ("Uranus", 19.18),
     ("Neptune", 30.07),
+]
+
+ALL_STARS: list[tuple[str, float]] = [
+    ("Sol", 0.0),  # Add more stars as needed
 ]
 
 MILKY_WAY = Galaxy(
@@ -31,7 +35,11 @@ SOL = StarSystem(
 )
 
 
-def insert_star_system(session: Session, planets: Sequence[str] | None = None):
+def insert_star_system(
+    session: Session,
+    planets: Sequence[str] | None = None,
+    stars: Sequence[str] | None = None,
+):
     # Check if the star system already exists
     statement = select(StarSystem).where(StarSystem.name == "Sol")
     result = session.exec(statement).first()
@@ -61,16 +69,31 @@ def insert_star_system(session: Session, planets: Sequence[str] | None = None):
     if planets is not None:
         planet_data = [p for p in ALL_PLANETS if p[0] in planets]
 
-    planet_objs = [
-        Planet(
+    star_data = ALL_STARS
+    if stars is not None:
+        star_data = [s for s in ALL_STARS if s[0] in stars]
+
+    body_objs = [
+        CelestialBody(
             name=name,
             position_x=pos,
             position_y=0.0,
             position_z=0.0,
+            type="planet",
             star_system_id=sol.id,
         )
         for name, pos in planet_data
+    ] + [
+        CelestialBody(
+            name=name,
+            position_x=pos,
+            position_y=0.0,
+            position_z=0.0,
+            type="star",
+            star_system_id=sol.id,
+        )
+        for name, pos in star_data
     ]
-    session.add_all(planet_objs)
+    session.add_all(body_objs)
     session.commit()
-    return milky_way, sol, planet_objs
+    return milky_way, sol, body_objs
