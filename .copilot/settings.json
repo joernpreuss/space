@@ -1,0 +1,14 @@
+{
+  // Enable or disable Copilot for this workspace
+  "enabled": true,
+  // Suggestion panel settings
+  "panel": {
+    "enabled": true
+  },
+  // Control how many suggestions are shown
+  "inlineSuggestCount": 3,
+  // Enable Copilot for all file types
+  "fileTypes": ["*"]
+  // Optionally, add more settings as needed
+  // "experimental": {}
+} 
