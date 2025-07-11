@@ -20,7 +20,13 @@ function App() {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p>
-          <strong>Backend says:</strong> {backendMessage}
+          <strong>Backend says:</strong>{" "}
+          {backendMessage.split("\n").map((line, idx) => (
+            <span key={idx}>
+              {line}
+              {idx < backendMessage.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </p>
         <a
           className="App-link"

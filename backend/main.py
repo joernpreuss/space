@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,4 +16,6 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello from FastAPI!"}
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    message = "Hello from FastAPI!\n" f"Current server time: {current_time}"
+    return {"message": message}
