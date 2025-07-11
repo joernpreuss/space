@@ -4,23 +4,31 @@
 
 ## Backend (FastAPI)
 
-1. Create and activate the virtual environment (if not already):
+1. Run the backend server (recommended):
+
+   For development:
 
    ```sh
-   uv venv
+   ./run_backend_dev.sh
+   ```
+
+   For production:
+
+   ```sh
+   ./run_backend_prod.sh
+   ```
+
+   (Alternatively, you can run uvicorn directly:)
+
+   ```sh
+   uv sync
+   uv run uvicorn backend.main:app --reload
+   ```
+
+2. (Optional) Activate the environment if you want to run Python commands directly:
+
+   ```sh
    source .venv/bin/activate
-   ```
-
-2. Install dependencies (if not already):
-
-   ```sh
-   uv add fastapi uvicorn ruff
-   ```
-
-3. Run the FastAPI server:
-
-   ```sh
-   uvicorn backend.main:app --reload
    ```
 
 ## Frontend (React + TypeScript)

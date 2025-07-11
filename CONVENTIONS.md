@@ -4,9 +4,16 @@
 
 ## Python Development
 
-- **Linting/Formatting:** Always use [ruff](https://github.com/astral-sh/ruff) for all linting and formatting tasks.
-- **Dependency Management:** Always use [uv](https://github.com/astral-sh/uv) for creating virtual environments and managing dependencies.
-- **Do not use:** pip, other linters, or formatters unless explicitly requested.
+- **Dependency Management & Environments:**  
+  Use [uv](https://github.com/astral-sh/uv) exclusively for creating virtual environments and managing dependencies.  
+  - Declare dependencies in `pyproject.toml` (not requirements.txt).
+  - Install all dependencies with `uv sync`.
+  - Add new dependencies with `uv add <package>`.
+  - Do not use pip or requirements.txt for any purpose.
+
+- **Linting & Formatting:**  
+  Use [ruff](https://github.com/astral-sh/ruff) for all linting and formatting tasks.  
+  - Do not use other linters or formatters (e.g., flake8, black, isort) unless explicitly requested.
 
 ## Frontend
 

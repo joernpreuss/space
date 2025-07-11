@@ -1,2 +1,2 @@
 #!/bin/sh
-uv run -m uvicorn backend.main:app --reload 
+uv run -m uvicorn backend.main:app --reload
