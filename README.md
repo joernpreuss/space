@@ -1,4 +1,6 @@
-# space
+# Project "space"
+
+**Note:** The primary development environment for this project is macOS. Scripts and instructions in this README use Unix/macOS conventions.
 
 ## Backend (FastAPI)
 

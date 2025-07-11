@@ -1,4 +1,6 @@
-# Project Conventions
+# Conventions
+
+**Note:** The primary development environment for this project is macOS. Scripts and instructions in this document use Unix/macOS conventions.
 
 ## Python Development
 
